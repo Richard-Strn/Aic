@@ -130,13 +130,15 @@ class _FeedScreenState extends State<FeedScreen> {
                         border: Border.all(color: Colors.brown[900]!, width: 2),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          'https://via.placeholder.com/320x350?text=Plantação',
-                          fit: BoxFit.cover,
-                          width: 370,
-                          height: 350,
+                      child: Container(
+                        width: double.infinity,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          image: const DecorationImage(
+                            image: AssetImage('assets/images/soja.png'),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                     ),

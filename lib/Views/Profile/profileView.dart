@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mencao/routes.dart';
+import 'package:mencao/Controller/Auth/authController.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -7,10 +8,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  int _selectedIndex =
-      0; // Índice de seleção entre 'Meus Anúncios' e 'Anúncios Salvos'
+  final AuthController _authController = AuthController();
+  int _selectedIndex = 0;
 
-  // Exemplo de listas de anúncios
   final List<Map<String, String>> _myAds = [
     {
       "title": "Anúncio 1",
@@ -37,16 +37,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
   ];
 
-  // Método para renderizar os anúncios com base na seleção
   List<Widget> _buildAds(List<Map<String, String>> ads) {
     return ads.map((ad) {
       return Card(
         color: Colors.brown[700],
-        margin: EdgeInsets.symmetric(vertical: 8),
+        margin: const EdgeInsets.symmetric(vertical: 8),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
-          side: BorderSide(
-              color: Colors.brown[900]!, width: 2), // Borda com largura dobrada
+          side: BorderSide(color: Colors.brown[900]!, width: 2),
         ),
         child: ListTile(
           leading: Container(
@@ -63,25 +61,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           title: Text(
             ad['title']!,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
           subtitle: Text(
             ad['price']!,
-            style: TextStyle(color: Colors.white70),
+            style: const TextStyle(color: Colors.white70),
           ),
           trailing:
               _selectedIndex == 1 // Se for 'Anúncios Salvos', ícone de chat
                   ? IconButton(
-                      icon: Icon(Icons.message_outlined),
+                      icon: const Icon(Icons.message_outlined),
                       color: Colors.white,
                       onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.chat);
                       },
                     )
-                  : Icon(
+                  : const Icon(
                       Icons.edit,
                       color: Colors.white,
                     ),
@@ -99,11 +97,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: Colors.brown[300], // Fundo semelhante às outras telas
       appBar: AppBar(
         backgroundColor: Colors.brown[800],
-        title: Text(
+        title: const Text(
           "Meu Perfil",
           style: TextStyle(color: Colors.white),
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -113,20 +111,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             CircleAvatar(
               radius: 50,
               backgroundColor: Colors.brown[900],
-              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+              backgroundImage:
+                  const NetworkImage('https://via.placeholder.com/150'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
-            // Nome do Usuário
+            // Email do Usuário
             Text(
-              "Nome do Usuário",
-              style: TextStyle(
+              _authController.userEmail,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             // Botão Editar Perfil
             TextButton(
@@ -139,12 +138,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 "Editar Perfil",
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+
+            // Campo dos anúncios
             Row(
               children: [
                 Expanded(
@@ -155,15 +156,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       });
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: BoxDecoration(
                         color: _selectedIndex == 0
                             ? Colors.brown[700]
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                            color: Colors.brown[900]!,
-                            width: 3), // Borda mais grossa
+                        border: Border.all(color: Colors.brown[900]!, width: 3),
                       ),
                       child: Text(
                         "Meus Anúncios",
@@ -178,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
@@ -187,15 +186,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       });
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: BoxDecoration(
                         color: _selectedIndex == 1
                             ? Colors.brown[700]
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                            color: Colors.brown[900]!,
-                            width: 3), // Borda mais grossa
+                        border: Border.all(color: Colors.brown[900]!, width: 3),
                       ),
                       child: Text(
                         "Anúncios Salvos",
@@ -212,14 +209,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            // Exibe os anúncios com base na seleção
+            // Colocando os anúncios estáticos
             Expanded(
               child: ListView(
                 children: _selectedIndex == 0
-                    ? _buildAds(_myAds) // Meus anúncios
-                    : _buildAds(_savedAds), // Anúncios salvos
+                    ? _buildAds(_myAds)
+                    : _buildAds(_savedAds),
               ),
             ),
           ],

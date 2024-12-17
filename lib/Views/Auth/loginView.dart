@@ -16,31 +16,24 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.brown[300],
-      appBar: AppBar(
-        backgroundColor: Colors.brown[800],
-        title: const Text(
-          "AgroShare",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           child: ListView(
             children: [
+              const SizedBox(height: 40),
               Container(
                 width: double.infinity,
                 height: 200,
                 decoration: BoxDecoration(
                   image: const DecorationImage(
-                    image: NetworkImage(
-                        'https://via.placeholder.com/600x200/0000FF/808080?Text=Banner+Image'),
+                    image: AssetImage('assets/images/logo.png'),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
 
               const Text(
                 "Login",
@@ -50,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
 
               // Campo de Email
               TextFormField(
@@ -114,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
 
               // Botão de Esqueci a Senha
               Align(
@@ -131,7 +124,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
 
               // Botão de Login
               ElevatedButton(

@@ -21,6 +21,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           "Recuperar Senha",
           style: TextStyle(color: Colors.white),
         ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,8 +33,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 height: 200,
                 decoration: BoxDecoration(
                   image: const DecorationImage(
-                    image: NetworkImage(
-                        'https://via.placeholder.com/600x200/0000FF/808080?Text=Banner+Image'),
+                    image: AssetImage('assets/images/logo.png'),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.circular(12),

@@ -8,9 +8,7 @@ class AuthController {
       String email, BuildContext context) async {
     int statusCode =
         await AuthModels.registerUser(nome, sobrenome, password, email);
-    print("ws");
-    print(statusCode);
-    if (statusCode == 200) {
+    if (statusCode == 200 || statusCode == 201) {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Usuário registrado com sucesso!')));
       Navigator.pushReplacementNamed(context, AppRoutes.login);
@@ -24,7 +22,7 @@ class AuthController {
   Future<void> forgotPassword(String email, BuildContext context) async {
     int statusCode = await AuthModels.forgetPassword(email);
 
-    if (statusCode == 200) {
+    if (statusCode == 200 || statusCode == 201) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Código de recuperação enviado para o email.')));
       Navigator.pushNamed(context, AppRoutes.recoverPassword);
@@ -39,7 +37,7 @@ class AuthController {
       String password, String email, BuildContext context) async {
     int statusCode = await AuthModels.loginUser(password, email);
 
-    if (statusCode == 200) {
+    if (statusCode == 200 || statusCode == 201) {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Login bem-sucedido!')));
       Navigator.pushReplacementNamed(context, AppRoutes.feed);
@@ -54,7 +52,7 @@ class AuthController {
       String code, String password, String email, BuildContext context) async {
     int statusCode = await AuthModels.recoveryPassword(code, password, email);
 
-    if (statusCode == 200) {
+    if (statusCode == 200 || statusCode == 201) {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Senha alterada com sucesso!')));
       Navigator.pushNamed(context, AppRoutes.login);

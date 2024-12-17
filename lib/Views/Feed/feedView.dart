@@ -22,19 +22,23 @@ class _FeedScreenState extends State<FeedScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: Drawer(
-        backgroundColor: Colors.brown[800],
+        backgroundColor: Colors.brown[300],
         child: Column(
           children: [
+            const SizedBox(height: 10),
             // AppBar Menu
             DrawerHeader(
-              decoration: BoxDecoration(color: Colors.brown[800]),
-              child: const Center(
-                child: Text(
-                  "AgroShare",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+              decoration: BoxDecoration(color: Colors.brown[300]),
+              child: Center(
+                child: Container(
+                  width: double.infinity,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    image: const DecorationImage(
+                      image: AssetImage('assets/images/logo.png'),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
               ),

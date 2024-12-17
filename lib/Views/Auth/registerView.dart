@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:mencao/Controller/Auth/authController.dart';
 import 'package:mencao/routes.dart';
@@ -33,6 +32,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           "Registrar",
           style: TextStyle(color: Colors.white),
         ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -53,7 +53,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       : null,
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 30),
 
               // Nome completo
               TextFormField(
@@ -221,7 +221,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    print("ee");
                     _authController.registerUser(
                       _nomeController.text,
                       _sobrenomeController.text,

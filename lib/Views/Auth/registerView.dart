@@ -1,11 +1,27 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:mencao/Controller/Auth/authController.dart';
 import 'package:mencao/routes.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   File? _image; // Variável para armazenar a imagem do perfil
+  final AuthController _authController =
+      AuthController(); // Instância do AuthController
+
+  // Controladores de texto
+  final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _sobrenomeController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   // Função para escolher uma imagem da galeria
   Future<void> _pickImage() async {
@@ -47,8 +63,9 @@ class RegisterScreen extends StatelessWidget {
 
               // Nome completo
               TextFormField(
+                controller: _nomeController,
                 decoration: InputDecoration(
-                  labelText: "Nome Completo",
+                  labelText: "Nome",
                   labelStyle: TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
@@ -68,17 +85,18 @@ class RegisterScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, insira seu nome completo';
+                    return 'Por favor, insira seu nome';
                   }
                   return null;
                 },
               ),
               SizedBox(height: 10),
 
-              // Cidade/Estado
+              // Sobrenome
               TextFormField(
+                controller: _sobrenomeController,
                 decoration: InputDecoration(
-                  labelText: "Cidade/Estado",
+                  labelText: "Sobrenome",
                   labelStyle: TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
@@ -97,8 +115,10 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 style: TextStyle(color: Colors.white),
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira sua cidade e estado';
+                  if (value == null ||
+                      value.isEmpty ||
+                      value == _nomeController.text) {
+                    return 'Por favor, insira seu sobrenome';
                   }
                   return null;
                 },
@@ -107,6 +127,7 @@ class RegisterScreen extends StatelessWidget {
 
               // E-mail
               TextFormField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   labelText: "E-mail",
                   labelStyle: TextStyle(color: Colors.white),
@@ -138,6 +159,7 @@ class RegisterScreen extends StatelessWidget {
 
               // Senha
               TextFormField(
+                controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: "Senha",
                   labelStyle: TextStyle(color: Colors.white),
@@ -169,6 +191,7 @@ class RegisterScreen extends StatelessWidget {
 
               // Confirmar senha
               TextFormField(
+                controller: _confirmPasswordController,
                 decoration: InputDecoration(
                   labelText: "Confirmar Senha",
                   labelStyle: TextStyle(color: Colors.white),
@@ -190,7 +213,9 @@ class RegisterScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
                 obscureText: true,
                 validator: (value) {
-                  if (value == null || value.isEmpty || value != 'senha') {
+                  if (value == null ||
+                      value.isEmpty ||
+                      value != _passwordController.text) {
                     return 'As senhas não coincidem';
                   }
                   return null;
@@ -202,7 +227,14 @@ class RegisterScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // Lógica para registro
+                    // Chama o método registerUser do AuthController
+                    _authController.registerUser(
+                      _nomeController.text,
+                      _sobrenomeController.text,
+                      _passwordController.text,
+                      _emailController.text,
+                      context,
+                    );
                   }
                 },
                 child: Text(

@@ -2,32 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:mencao/Controller/Auth/authController.dart';
 import 'package:mencao/routes.dart';
 
-class LoginScreen extends StatefulWidget {
+class RecoverPasswordScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RecoverPasswordScreenState createState() => _RecoverPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final AuthController _authController = AuthController();
+class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
+  final _formKey =
+      GlobalKey<FormState>(); // GlobalKey para validar o formulário
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _codeController = TextEditingController();
+  final AuthController _authController =
+      AuthController(); // Instância do AuthController
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          Colors.brown[300], // Mesma cor de fundo da tela de registro
+      backgroundColor: Colors.brown[300], // Cor de fundo consistente
       appBar: AppBar(
-        backgroundColor:
-            Colors.brown[800], // Mesma cor da AppBar da tela de registro
+        backgroundColor: Colors.brown[800], // Cor da AppBar consistente
         title: Text(
-          "AgroShare",
+          "Redefinir Senha",
           style: TextStyle(color: Colors.white),
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
+          key: _formKey, // Usando o GlobalKey para validação do formulário
           child: ListView(
             children: [
               // Banner de imagem
@@ -43,11 +48,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              SizedBox(height: 20), // Espaço entre o banner e o título de login
+              SizedBox(height: 20),
 
-              // Título de Login
+              // Título de Redefinir Senha
               Text(
-                "Login",
+                "Redefinir a sua senha",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -56,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 20),
 
-              // Campo de Email
+              // Campo de E-mail
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -86,13 +91,45 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
+
+              // Campo de Código
+              TextFormField(
+                controller: _codeController,
+                decoration: InputDecoration(
+                  labelText: "Código",
+                  labelStyle: TextStyle(color: Colors.white),
+                  filled: true,
+                  fillColor: Colors.brown[700],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.brown[900]!),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.brown[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+                style: TextStyle(color: Colors.white),
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira o código';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
 
               // Campo de Senha
               TextFormField(
                 controller: _passwordController,
                 decoration: InputDecoration(
-                  labelText: "Senha",
+                  labelText: "Nova Senha",
                   labelStyle: TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
@@ -118,36 +155,57 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
 
-              // Botão de Esqueci a Senha
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.forgotPassword);
-                  },
-                  child: Text(
-                    "Esqueceu a senha?",
-                    style: TextStyle(
-                      color: Colors.white70,
-                    ),
+              // Campo de Confirmar Senha
+              TextFormField(
+                controller: _confirmPasswordController,
+                decoration: InputDecoration(
+                  labelText: "Confirmar Senha",
+                  labelStyle: TextStyle(color: Colors.white),
+                  filled: true,
+                  fillColor: Colors.brown[700],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.brown[900]!),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.brown[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
+                style: TextStyle(color: Colors.white),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null ||
+                      value.isEmpty ||
+                      value != _passwordController.text) {
+                    return 'As senhas não coincidem';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20),
 
-              // Botão de Login
+              // Botão de Redefinir Senha
               ElevatedButton(
                 onPressed: () {
-                  if (_emailController.text.isNotEmpty &&
-                      _passwordController.text.isNotEmpty) {
-                    _authController.loginUser(_passwordController.text,
-                        _emailController.text, context);
+                  if (_formKey.currentState!.validate()) {
+                    // Lógica para redefinir a senha
+                    // Exemplo de navegação para a tela de login após redefinir a senha
+                    _authController.recoverPassword(
+                        _codeController.text,
+                        _passwordController.text,
+                        _emailController.text,
+                        context);
                   }
                 },
                 child: Text(
-                  "Entrar",
+                  "Redefinir Senha",
                   style: TextStyle(fontSize: 18, color: Colors.brown[800]),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -161,13 +219,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 20),
 
-              // Botão de Criar Conta
+              // Botão para voltar para o login
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.register);
+                  Navigator.pushNamed(context, AppRoutes.login);
                 },
                 child: Text(
-                  "Criar nova conta",
+                  "Voltar para o Login",
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,

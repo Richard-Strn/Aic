@@ -2,26 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:mencao/Controller/Auth/authController.dart';
 import 'package:mencao/routes.dart';
 
-class LoginScreen extends StatefulWidget {
+class ForgotPasswordScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final AuthController _authController = AuthController();
+  final AuthController _authController =
+      AuthController(); // Instância do AuthController
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          Colors.brown[300], // Mesma cor de fundo da tela de registro
+      backgroundColor: Colors.brown[300], // Mesma cor de fundo das outras telas
       appBar: AppBar(
         backgroundColor:
-            Colors.brown[800], // Mesma cor da AppBar da tela de registro
+            Colors.brown[800], // Mesma cor da AppBar das outras telas
         title: Text(
-          "AgroShare",
+          "Recuperar Senha",
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -43,11 +42,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              SizedBox(height: 20), // Espaço entre o banner e o título de login
+              SizedBox(height: 20),
 
-              // Título de Login
+              // Título de Recuperar Senha
               Text(
-                "Login",
+                "Esqueci minha senha",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -86,68 +85,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
-
-              // Campo de Senha
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  labelText: "Senha",
-                  labelStyle: TextStyle(color: Colors.white),
-                  filled: true,
-                  fillColor: Colors.brown[700],
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.brown[900]!),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.brown[900]!),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                ),
-                style: TextStyle(color: Colors.white),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty || value.length < 6) {
-                    return 'A senha deve ter no mínimo 6 caracteres';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 10),
-
-              // Botão de Esqueci a Senha
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.forgotPassword);
-                  },
-                  child: Text(
-                    "Esqueceu a senha?",
-                    style: TextStyle(
-                      color: Colors.white70,
-                    ),
-                  ),
-                ),
-              ),
               SizedBox(height: 20),
 
-              // Botão de Login
+              // Botão de Enviar Código
               ElevatedButton(
                 onPressed: () {
-                  if (_emailController.text.isNotEmpty &&
-                      _passwordController.text.isNotEmpty) {
-                    _authController.loginUser(_passwordController.text,
+                  if (_emailController.text.isNotEmpty) {
+                    // Lógica para enviar o código de recuperação
+                    // Exemplo de navegação para a tela de login após o envio do código
+                    _authController.forgotPassword(
                         _emailController.text, context);
                   }
                 },
                 child: Text(
-                  "Entrar",
+                  "Enviar Código",
                   style: TextStyle(fontSize: 18, color: Colors.brown[800]),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -161,13 +112,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 20),
 
-              // Botão de Criar Conta
+              // Botão de Voltar para o Login
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.register);
+                  Navigator.pushNamed(context, AppRoutes.login);
                 },
                 child: Text(
-                  "Criar nova conta",
+                  "Voltar para o Login",
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,

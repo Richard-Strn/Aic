@@ -116,17 +116,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 10),
 
-            // Email do Usuário
-            Text(
-              _authController.userEmail,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 10),
-
             // Botão Editar Perfil
             TextButton(
               onPressed: () {

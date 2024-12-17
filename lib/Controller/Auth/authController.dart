@@ -3,7 +3,6 @@ import 'package:mencao/Models/Auth/authModels.dart';
 import 'package:mencao/routes.dart';
 
 class AuthController {
-  String userEmail = "";
   // Método para registrar o usuário
   Future<void> registerUser(String nome, String sobrenome, String password,
       String email, BuildContext context) async {
@@ -42,8 +41,6 @@ class AuthController {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Login bem-sucedido!')));
       Navigator.pushReplacementNamed(context, AppRoutes.feed);
-      userEmail = email;
-      print("GET NOME");
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Falha no login. Verifique suas credenciais.')));

@@ -15,12 +15,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          Colors.brown[300], // Mesma cor de fundo da tela de registro
+      backgroundColor: Colors.brown[300],
       appBar: AppBar(
-        backgroundColor:
-            Colors.brown[800], // Mesma cor da AppBar da tela de registro
-        title: Text(
+        backgroundColor: Colors.brown[800],
+        title: const Text(
           "AgroShare",
           style: TextStyle(color: Colors.white),
         ),
@@ -30,12 +28,11 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Form(
           child: ListView(
             children: [
-              // Banner de imagem
               Container(
                 width: double.infinity,
                 height: 200,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     image: NetworkImage(
                         'https://via.placeholder.com/600x200/0000FF/808080?Text=Banner+Image'),
                     fit: BoxFit.cover,
@@ -43,10 +40,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              SizedBox(height: 20), // Espaço entre o banner e o título de login
+              const SizedBox(height: 20),
 
-              // Título de Login
-              Text(
+              const Text(
                 "Login",
                 style: TextStyle(
                   fontSize: 28,
@@ -54,14 +50,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Campo de Email
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
                   labelText: "E-mail",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -74,10 +70,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty || !value.contains('@')) {
@@ -86,14 +82,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // Campo de Senha
               TextFormField(
                 controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: "Senha",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -106,10 +102,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty || value.length < 6) {
@@ -118,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // Botão de Esqueci a Senha
               Align(
@@ -127,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoutes.forgotPassword);
                   },
-                  child: Text(
+                  child: const Text(
                     "Esqueceu a senha?",
                     style: TextStyle(
                       color: Colors.white70,
@@ -135,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Botão de Login
               ElevatedButton(
@@ -146,27 +142,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         _emailController.text, context);
                   }
                 },
-                child: Text(
-                  "Entrar",
-                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
-                ),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.brown[800],
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  minimumSize: Size(double.infinity, 50),
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                child: Text(
+                  "Entrar",
+                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Botão de Criar Conta
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.register);
                 },
-                child: Text(
+                child: const Text(
                   "Criar nova conta",
                   style: TextStyle(
                     fontSize: 16,

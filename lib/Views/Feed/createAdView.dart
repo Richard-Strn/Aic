@@ -6,14 +6,14 @@ class CreateAdScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[300], // Fundo similar ao FeedScreen
+      backgroundColor: Colors.brown[300],
       appBar: AppBar(
         backgroundColor: Colors.brown[800],
-        title: Text(
+        title: const Text(
           "Criar Anúncio",
           style: TextStyle(color: Colors.white),
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,11 +21,11 @@ class CreateAdScreen extends StatelessWidget {
           key: _formKey,
           child: ListView(
             children: [
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: "Nome do Produto",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -38,16 +38,16 @@ class CreateAdScreen extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: "Descrição",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -60,19 +60,19 @@ class CreateAdScreen extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 keyboardType: TextInputType.multiline,
-                maxLines: null, // Permite várias linhas
-                minLines: 2, // Define o número mínimo de linhas
+                maxLines: null,
+                minLines: 2,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: "Preço",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -85,17 +85,17 @@ class CreateAdScreen extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 keyboardType: TextInputType.number,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: "Categoria",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -108,45 +108,45 @@ class CreateAdScreen extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               TextButton(
                 onPressed: () {
                   // Upload de imagem
                 },
-                child: Text(
-                  "Upload de Imagem",
-                  style: TextStyle(color: Colors.white),
-                ),
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.brown[700],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
+                child: const Text(
+                  "Upload de Imagem",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // Lógica para salvar o anúncio
                   }
                 },
-                child: Text(
-                  "Publicar Anúncio",
-                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
-                ),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.brown[800],
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  minimumSize: Size(double.infinity, 50),
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                child: Text(
+                  "Publicar Anúncio",
+                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
                 ),
               ),
             ],

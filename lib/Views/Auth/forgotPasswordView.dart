@@ -9,17 +9,15 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _emailController = TextEditingController();
-  final AuthController _authController =
-      AuthController(); // Instância do AuthController
+  final AuthController _authController = AuthController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[300], // Mesma cor de fundo das outras telas
+      backgroundColor: Colors.brown[300],
       appBar: AppBar(
-        backgroundColor:
-            Colors.brown[800], // Mesma cor da AppBar das outras telas
-        title: Text(
+        backgroundColor: Colors.brown[800],
+        title: const Text(
           "Recuperar Senha",
           style: TextStyle(color: Colors.white),
         ),
@@ -29,12 +27,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         child: Form(
           child: ListView(
             children: [
-              // Banner de imagem
               Container(
                 width: double.infinity,
                 height: 200,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     image: NetworkImage(
                         'https://via.placeholder.com/600x200/0000FF/808080?Text=Banner+Image'),
                     fit: BoxFit.cover,
@@ -42,10 +39,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-              // Título de Recuperar Senha
-              Text(
+              const Text(
                 "Esqueci minha senha",
                 style: TextStyle(
                   fontSize: 28,
@@ -53,14 +49,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Campo de Email
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
                   labelText: "E-mail",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -73,10 +69,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty || !value.contains('@')) {
@@ -85,22 +81,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Botão de Enviar Código
               ElevatedButton(
                 onPressed: () {
                   if (_emailController.text.isNotEmpty) {
-                    // Lógica para enviar o código de recuperação
-                    // Exemplo de navegação para a tela de login após o envio do código
                     _authController.forgotPassword(
                         _emailController.text, context);
                   }
                 },
-                child: Text(
-                  "Enviar Código",
-                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
-                ),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.brown[800],
                   backgroundColor: Colors.white,
@@ -109,15 +99,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                   minimumSize: Size(double.infinity, 50),
                 ),
+                child: Text(
+                  "Enviar Código",
+                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
+                ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Botão de Voltar para o Login
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.login);
                 },
-                child: Text(
+                child: const Text(
                   "Voltar para o Login",
                   style: TextStyle(
                     fontSize: 16,

@@ -7,8 +7,7 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
-  // Lista para controlar os estados dos ícones de bookmark (true = marcado)
-  List<bool> _bookmarkedItems = List.generate(10, (index) => false);
+  final List<bool> _bookmarkedItems = List.generate(10, (index) => false);
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +15,20 @@ class _FeedScreenState extends State<FeedScreen> {
       backgroundColor: Colors.brown[300],
       appBar: AppBar(
         backgroundColor: Colors.brown[800],
-        title: Text(
+        title: const Text(
           "AgroShare",
           style: TextStyle(color: Colors.white),
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: Drawer(
         backgroundColor: Colors.brown[800],
         child: Column(
           children: [
-            // Cabeçalho do Drawer
+            // AppBar Menu
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.brown[800]),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "AgroShare",
                   style: TextStyle(
@@ -43,8 +42,8 @@ class _FeedScreenState extends State<FeedScreen> {
 
             // Opção: Perfil
             ListTile(
-              leading: Icon(Icons.person, color: Colors.white),
-              title: Text(
+              leading: const Icon(Icons.person, color: Colors.white),
+              title: const Text(
                 "Perfil",
                 style: TextStyle(color: Colors.white),
               ),
@@ -56,8 +55,8 @@ class _FeedScreenState extends State<FeedScreen> {
 
             // Opção: Criar
             ListTile(
-              leading: Icon(Icons.add, color: Colors.white),
-              title: Text(
+              leading: const Icon(Icons.add, color: Colors.white),
+              title: const Text(
                 "Criar anúncio",
                 style: TextStyle(color: Colors.white),
               ),
@@ -69,14 +68,13 @@ class _FeedScreenState extends State<FeedScreen> {
 
             // Opção: Sair
             ListTile(
-              leading: Icon(Icons.exit_to_app, color: Colors.white),
-              title: Text(
+              leading: const Icon(Icons.exit_to_app, color: Colors.white),
+              title: const Text(
                 "Sair",
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-                Navigator.pop(context); // Fecha o Drawer
-                // Lógica de logout (se necessário)
+                Navigator.pop(context);
                 Navigator.pushReplacementNamed(context, AppRoutes.login);
               },
             ),
@@ -84,16 +82,16 @@ class _FeedScreenState extends State<FeedScreen> {
         ),
       ),
       body: ListView.builder(
-        padding: EdgeInsets.all(8),
-        itemCount: 10, // Exemplo de número de anúncios
+        padding: const EdgeInsets.all(8),
+        itemCount: 10,
         itemBuilder: (context, index) {
           return Card(
-            color: Colors.brown[800], // Fundo do card em marrom escuro
+            color: Colors.brown[800],
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
               side: BorderSide(color: Colors.brown[900]!),
             ),
-            margin: EdgeInsets.symmetric(vertical: 8),
+            margin: const EdgeInsets.symmetric(vertical: 8),
             elevation: 4,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -101,29 +99,27 @@ class _FeedScreenState extends State<FeedScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Local e Categoria
-                  Text(
+                  const Text(
                     "Local: Cidade, Estado",
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(height: 5),
-                  Text(
+                  const SizedBox(height: 5),
+                  const Text(
                     "Categoria: Categoria Exemplo",
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
 
                   // Tempo
-                  Text(
+                  const Text(
                     "2 dias atrás",
-                    style: TextStyle(
-                        color: Colors
-                            .white70), // Fonte branca com opacidade para contraste
+                    style: TextStyle(color: Colors.white70),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                  // Imagem de uma plantação centralizada com borda
+                  // Imagem
                   Center(
                     child: Container(
                       decoration: BoxDecoration(
@@ -141,10 +137,10 @@ class _FeedScreenState extends State<FeedScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
                   // Título do Anúncio
-                  Text(
+                  const Text(
                     "Título do Anúncio",
                     style: TextStyle(
                       fontSize: 18,
@@ -152,10 +148,10 @@ class _FeedScreenState extends State<FeedScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
 
-                  // Preço abaixo do título
-                  Text(
+                  // Preço
+                  const Text(
                     "Preço: R\$ 100,00",
                     style: TextStyle(
                       fontSize: 16,
@@ -163,16 +159,14 @@ class _FeedScreenState extends State<FeedScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
 
                   // Descrição
-                  Text(
+                  const Text(
                     "Breve descrição do produto.",
-                    style: TextStyle(
-                        color: Colors
-                            .white70), // Descrição em branco com opacidade
+                    style: TextStyle(color: Colors.white70),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
                   // Ícones de ações
                   Row(
@@ -194,7 +188,7 @@ class _FeedScreenState extends State<FeedScreen> {
                         },
                       ),
                       IconButton(
-                        icon: Icon(Icons.message_outlined),
+                        icon: const Icon(Icons.message_outlined),
                         color: Colors.white,
                         onPressed: () {
                           Navigator.pushNamed(context, AppRoutes.chat);

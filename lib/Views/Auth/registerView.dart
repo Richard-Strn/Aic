@@ -11,11 +11,9 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
-  File? _image; // Variável para armazenar a imagem do perfil
-  final AuthController _authController =
-      AuthController(); // Instância do AuthController
+  File? _image;
+  final AuthController _authController = AuthController();
 
-  // Controladores de texto
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _sobrenomeController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -23,18 +21,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  // Função para escolher uma imagem da galeria
-  Future<void> _pickImage() async {
-    // Lógica para escolher uma imagem (pode ser implementada com o pacote ImagePicker)
-  }
+  Future<void> _pickImage() async {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[300], // Fundo semelhante às outras telas
+      backgroundColor: Colors.brown[300],
       appBar: AppBar(
         backgroundColor: Colors.brown[800],
-        title: Text(
+        title: const Text(
           "Registrar",
           style: TextStyle(color: Colors.white),
         ),
@@ -51,22 +46,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: CircleAvatar(
                   radius: 50,
                   backgroundImage: _image == null
-                      ? NetworkImage(
-                          'https://via.placeholder.com/150') // Imagem padrão
+                      ? const NetworkImage('https://via.placeholder.com/150')
                       : FileImage(_image!) as ImageProvider,
                   child: _image == null
                       ? Icon(Icons.camera_alt, size: 40, color: Colors.white)
                       : null,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // Nome completo
               TextFormField(
                 controller: _nomeController,
                 decoration: InputDecoration(
                   labelText: "Nome",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -79,10 +73,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira seu nome';
@@ -90,14 +84,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // Sobrenome
               TextFormField(
                 controller: _sobrenomeController,
                 decoration: InputDecoration(
                   labelText: "Sobrenome",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -110,10 +104,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 validator: (value) {
                   if (value == null ||
                       value.isEmpty ||
@@ -123,14 +117,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // E-mail
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
                   labelText: "E-mail",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -143,10 +137,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty || !value.contains('@')) {
@@ -155,14 +149,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // Senha
               TextFormField(
                 controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: "Senha",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -175,10 +169,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty || value.length < 6) {
@@ -187,14 +181,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // Confirmar senha
               TextFormField(
                 controller: _confirmPasswordController,
                 decoration: InputDecoration(
                   labelText: "Confirmar Senha",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -207,10 +201,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 obscureText: true,
                 validator: (value) {
                   if (value == null ||
@@ -221,13 +215,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Botão de registro
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // Chama o método registerUser do AuthController
+                    print("ee");
                     _authController.registerUser(
                       _nomeController.text,
                       _sobrenomeController.text,
@@ -237,27 +231,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     );
                   }
                 },
-                child: Text(
-                  "Registrar",
-                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
-                ),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.brown[800],
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  minimumSize: Size(double.infinity, 50),
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                child: Text(
+                  "Registrar",
+                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Botão para login (caso o usuário já tenha conta)
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.login);
                 },
-                child: Text(
+                child: const Text(
                   "Já tem uma conta? Faça login",
                   style: TextStyle(color: Colors.white),
                 ),

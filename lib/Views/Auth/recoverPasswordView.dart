@@ -8,23 +8,21 @@ class RecoverPasswordScreen extends StatefulWidget {
 }
 
 class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
-  final _formKey =
-      GlobalKey<FormState>(); // GlobalKey para validar o formulário
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final TextEditingController _codeController = TextEditingController();
-  final AuthController _authController =
-      AuthController(); // Instância do AuthController
+  final AuthController _authController = AuthController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[300], // Cor de fundo consistente
+      backgroundColor: Colors.brown[300],
       appBar: AppBar(
-        backgroundColor: Colors.brown[800], // Cor da AppBar consistente
-        title: Text(
+        backgroundColor: Colors.brown[800],
+        title: const Text(
           "Redefinir Senha",
           style: TextStyle(color: Colors.white),
         ),
@@ -32,15 +30,14 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey, // Usando o GlobalKey para validação do formulário
+          key: _formKey,
           child: ListView(
             children: [
-              // Banner de imagem
               Container(
                 width: double.infinity,
                 height: 200,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     image: NetworkImage(
                         'https://via.placeholder.com/600x200/0000FF/808080?Text=Banner+Image'),
                     fit: BoxFit.cover,
@@ -48,10 +45,9 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-              // Título de Redefinir Senha
-              Text(
+              const Text(
                 "Redefinir a sua senha",
                 style: TextStyle(
                   fontSize: 28,
@@ -59,14 +55,14 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Campo de E-mail
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
                   labelText: "E-mail",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -79,10 +75,10 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty || !value.contains('@')) {
@@ -91,14 +87,14 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Campo de Código
               TextFormField(
                 controller: _codeController,
                 decoration: InputDecoration(
                   labelText: "Código",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -111,10 +107,10 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -123,14 +119,14 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Campo de Senha
               TextFormField(
                 controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: "Nova Senha",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -143,10 +139,10 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty || value.length < 6) {
@@ -155,14 +151,14 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Campo de Confirmar Senha
               TextFormField(
                 controller: _confirmPasswordController,
                 decoration: InputDecoration(
                   labelText: "Confirmar Senha",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.brown[700],
                   border: OutlineInputBorder(
@@ -175,10 +171,10 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 obscureText: true,
                 validator: (value) {
                   if (value == null ||
@@ -189,14 +185,12 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Botão de Redefinir Senha
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // Lógica para redefinir a senha
-                    // Exemplo de navegação para a tela de login após redefinir a senha
                     _authController.recoverPassword(
                         _codeController.text,
                         _passwordController.text,
@@ -204,27 +198,27 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                         context);
                   }
                 },
-                child: Text(
-                  "Redefinir Senha",
-                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
-                ),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.brown[800],
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  minimumSize: Size(double.infinity, 50),
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                child: Text(
+                  "Redefinir Senha",
+                  style: TextStyle(fontSize: 18, color: Colors.brown[800]),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Botão para voltar para o login
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.login);
                 },
-                child: Text(
+                child: const Text(
                   "Voltar para o Login",
                   style: TextStyle(
                     fontSize: 16,

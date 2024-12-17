@@ -8,17 +8,15 @@ class AuthController {
       String email, BuildContext context) async {
     int statusCode =
         await AuthModels.registerUser(nome, sobrenome, password, email);
-
+    print("ws");
+    print(statusCode);
     if (statusCode == 200) {
-      // Registro bem-sucedido, você pode redirecionar o usuário para a tela principal ou exibir uma mensagem de sucesso
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Usuário registrado com sucesso!')));
+          const SnackBar(content: Text('Usuário registrado com sucesso!')));
       Navigator.pushReplacementNamed(context, AppRoutes.login);
-      // Navegar para a próxima tela ou realizar outra ação
     } else {
-      // Falha no registro, exiba uma mensagem de erro
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Falha no registro. Tente novamente.')));
+          const SnackBar(content: Text('Falha no registro. Tente novamente.')));
     }
   }
 
@@ -27,14 +25,12 @@ class AuthController {
     int statusCode = await AuthModels.forgetPassword(email);
 
     if (statusCode == 200) {
-      // Sucesso ao enviar código de recuperação
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Código de recuperação enviado para o email.')));
       Navigator.pushNamed(context, AppRoutes.recoverPassword);
     } else {
-      // Falha ao solicitar recuperação de senha
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Falha ao enviar código de recuperação.')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Falha ao enviar código de recuperação.')));
     }
   }
 
@@ -44,14 +40,11 @@ class AuthController {
     int statusCode = await AuthModels.loginUser(password, email);
 
     if (statusCode == 200) {
-      // Sucesso no login, você pode navegar para a tela principal ou exibir uma mensagem de sucesso
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Login bem-sucedido!')));
+          .showSnackBar(const SnackBar(content: Text('Login bem-sucedido!')));
       Navigator.pushReplacementNamed(context, AppRoutes.feed);
-      // Navegar para a próxima tela
     } else {
-      // Falha no login, exiba uma mensagem de erro
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Falha no login. Verifique suas credenciais.')));
     }
   }
@@ -62,18 +55,15 @@ class AuthController {
     int statusCode = await AuthModels.recoveryPassword(code, password, email);
 
     if (statusCode == 200) {
-      // Sucesso na recuperação da senha
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Senha alterada com sucesso!')));
-      Navigator.pushNamed(context, AppRoutes.login);
-      // Navegar para a tela de login ou outra ação
-    } else if (statusCode == 400) {
-      // Falha na recuperação da senha
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Código inválido ou expirado.')));
+          const SnackBar(content: Text('Senha alterada com sucesso!')));
+      Navigator.pushNamed(context, AppRoutes.login);
+    } else if (statusCode == 400) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Código inválido ou expirado.')));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Falha na alteração da senha.')));
+          const SnackBar(content: Text('Falha na alteração da senha.')));
     }
   }
 }
